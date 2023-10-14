@@ -1,0 +1,52 @@
+
+import LoginForm from '../components/LoginForm/LoginForm'
+import Trashcan from '../public/TrashcanSVG.svg'
+import { getServerSession } from 'next-auth'
+import { authOptions } from './api/auth/[...nextauth]/route'
+
+export default async function Home() {
+
+  const session = await getServerSession(authOptions);
+
+  return (
+    <main
+      className='w-screen grid md:grid-cols-2'>
+      <div className="svg-container">
+        <pre>{JSON.stringify(session)}</pre>
+        <svg className="trashcan-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="582" height="349" fill="transparent"/>
+        <g id="undraw_throw_away_re_x60k 1" clipPath="url(#clip0_0_1)">
+        <path id="Path 8" d="M344.13 349.001H235.221L235.2 348.348L230 189H349.351L344.13 349.001ZM236.443 347.646H342.909L348.042 190.355H231.309L236.443 347.646Z" fill="#3F3D56"/>
+        <g id="trashcan-lines">
+        <path id="Rectangle 17" d="M261.91 218.103H253.626V327.933H261.91V218.103Z" fill="#3F3D56"/>
+        <path id="Rectangle 18" d="M294.526 218.103H286.242V327.933H294.526V218.103Z" fill="#3F3D56"/>
+        <path id="Rectangle 19" d="M327.143 218.103H318.859V327.933H327.143V218.103Z" fill="#3F3D56"/>
+        </g>
+        <g id="trashcan-lid" filter="url(#filter0_d_0_1)">
+        <path id="Vector" d="M209.946 190.498L209.978 190.967L210.447 190.964L371.878 190.087L372.41 190.084L372.374 189.553L370.992 169.164L370.96 168.695L370.49 168.698L209.06 169.573L208.528 169.576L208.564 170.107L209.946 190.498ZM371.227 168.365L372.722 190.41L372.608 190.411L209.71 191.296L208.216 169.251L208.329 169.25L208.33 169.25L371.227 168.365Z" fill="#3F3D56" stroke="black"/>
+        <path id="Path 10" d="M290.171 127.412C285.42 127.435 280.863 128.858 277.041 131.512C273.218 134.166 270.291 137.94 268.606 142.385C266.92 146.831 266.549 151.763 267.534 156.594C268.519 161.426 270.821 165.954 274.165 169.643L281.955 169.601C278.338 167.19 275.497 163.703 273.846 159.65C272.196 155.596 271.823 151.19 272.782 147.077C273.742 142.963 275.983 139.358 279.178 136.788C282.373 134.219 286.354 132.821 290.537 132.799C294.721 132.777 298.888 134.133 302.428 136.666C305.969 139.2 308.696 142.779 310.211 146.88C311.726 150.981 311.949 155.388 310.847 159.455C309.746 163.523 307.378 167.038 304.09 169.485L311.88 169.442C314.723 165.721 316.41 161.171 316.742 156.333C317.074 151.495 316.035 146.571 313.75 142.145C311.466 137.72 308.03 133.98 303.851 131.368C299.673 128.756 294.926 127.382 290.176 127.409L290.171 127.412Z" fill="#3F3D56"/>
+        </g>
+        </g>
+        <defs>
+        <filter id="filter0_d_0_1" x="203.681" y="127.409" width="173.576" height="72.3894" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+        <feOffset dy="4"/>
+        <feGaussianBlur stdDeviation="2"/>
+        <feComposite in2="hardAlpha" operator="out"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+        </filter>
+        <clipPath id="clip0_0_1">
+        <rect width="582" height="349" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>
+      </div>
+      <div className='bg-purple-300 flex justify-center items-center md: h-screen'>
+          <LoginForm/>
+      </div>
+    </main>
+  )
+}

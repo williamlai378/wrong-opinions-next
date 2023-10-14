@@ -1,0 +1,73 @@
+.banner-title {
+    background-color: rgba(192, 132, 252, .85);
+}
+
+.anime-description {
+    display: block;
+}
+
+.anime-description-truncated {
+    display: -webkit-box;
+    line-clamp: 8;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.anime-description-truncated>p {
+    display: inline;
+}
+
+.category-container {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.character-description {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-title {
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.overlay {
+    background: transparent;
+    transition: all .25s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.overlay:hover {
+    background: linear-gradient(to bottom, rgba(153, 50, 204, .95), rgba(153, 50, 204, .25));
+    transition: all .25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.card-add-container {
+    transform: scale(0);
+    transform-origin: center;
+    transition: all .5s;
+    z-index: 5;
+    top: calc(100% - 45px);
+    left: 0;
+    right: 0;
+}
+
+.item-card:hover .card-add-container {
+    transform: scale(1);
+    transition: all .5s;
+}

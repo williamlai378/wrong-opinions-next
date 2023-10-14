@@ -1,0 +1,80 @@
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
+.slide-anime-description {
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.slide-subheading {
+  display: grid;
+  grid-template-columns: auto 1fr ;
+  column-gap: 1rem;
+}
+
+.inner-container {
+  transition: 1s ease;
+}
+
+.card-title {
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.inner-slider {
+  scroll-behavior: smooth;
+}
+
+
+.overlay {
+  background: transparent;
+  transition: all .25s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.overlay:hover {
+  background: linear-gradient(to bottom, rgba(153,50,204, .95), rgba(153,50,204, .25));
+  transition: all .25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.airing-item {
+  display: grid;
+  grid-template-columns: 10% 1fr 15%;
+}
+
+.trending-sticker {
+  border-image: linear-gradient(45deg, red, blue) 10;
+}
+
+.hot-sticker {
+  border-image: linear-gradient(45deg, rgb(153, 50, 204), red) 10;
+}
+.item-card img {
+  width: 100%;
+  height: 100%;
+}
+
+.item-card:hover > div .card-add-container {
+  transform: scale(1)
+}
+
+.card-add-container {
+  transform: scale(0);
+  transform-origin: center;
+  transition: all .5s;
+  z-index: 5;
+  top: calc(100% - 45px);
+  left: 0;
+  right: 0;
+}

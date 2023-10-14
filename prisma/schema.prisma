@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  username      String? @unique
+  image         Int? @default(0)
+  bannerImage   Int? @default(0)
+  password      String?
+  bio           String? @default("")
+  titlePreference String? @default("")
+  accounts      Account[]
+  sessions      Session[]
+  lists         List[]
+  opinions      Opinion[]
+}
+
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model List {
+  id Int @id @default(autoincrement())
+  name String?
+  createdAt DateTime @default(now())
+  user User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId String 
+  listItems ListItem[]
+}
+
+model ListItem {
+  id String @id @default(cuid())
+  animeId Int
+  animeTitle String?
+  episodeProgress Int
+  totalEpisodes Int
+  animeBannerImage String
+  animeColor String
+  animeFormat String
+  animeStatus String
+  popularity Int @default(0)
+  rating Int
+  viewStatus String?
+  list List @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId Int 
+  animeImage String?
+  addedToListAt DateTime @default(now())
+  @@unique([animeId, listId])
+}
+
+model Opinion {
+  opinionId Int @id @default(autoincrement())
+  text String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String 
+  animeId Int
+  responses OpinionResponse[]
+  edited Boolean @default(false)
+  postedAt DateTime @default(now())
+  @@unique([userId, animeId])
+}
+
+model OpinionResponse {
+  id Int @id @default(autoincrement())
+  opinionId Int
+  opinion Opinion @relation(fields: [opinionId], references: [opinionId], onDelete: Cascade)
+  userId String
+  response Boolean
+  @@unique(fields: [opinionId, userId], name: "specificUser")
+}
+

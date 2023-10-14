@@ -1,0 +1,14 @@
+
+@keyframes MovingImageAnimation {
+    from {
+        background-position: 20% 0%;
+    }
+    to {
+        background-position: 90% 0%;
+    }
+}
+
+.homepage-mobile-slide-container {
+   animation: MovingImageAnimation 15s linear infinite alternate;
+}
+
